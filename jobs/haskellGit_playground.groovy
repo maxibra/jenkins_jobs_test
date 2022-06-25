@@ -1,23 +1,14 @@
-pipeline {
-  agent none
-
-  stages {
-    stage("Hello") {
-      steps {
-        echo "hello"
-        // need to use script block to assign value
-        script {
-          currentBuild.result = "UNSTABLE"
+pipelineJob('example') {
+    definition {
+        displayName('Job DSL Example Project')
+        description('My first job')
+        deliveryPipelineConfiguration('qa', 'integration-tests')
+        logRotator {
+            numToKeep(10)
+            artifactNumToKeep(1)
         }
-      }
+        throttleConcurrentBuilds {
+           categmaxTotalories(1)
+        }
     }
-  }
-  post {
-    always {
-      echo "I ALWAYS run first"
-    }
-    unstable {
-      echo "UNSTABLE runs after ALWAYS"
-    }
-  }
 }
