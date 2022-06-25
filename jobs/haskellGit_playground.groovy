@@ -7,8 +7,5 @@ pipelineJob('example') {
             numToKeep(10)
             artifactNumToKeep(1)
         }
-        throttleConcurrentBuilds {
-           categmaxTotalories(1)
-        }
     }
 }
